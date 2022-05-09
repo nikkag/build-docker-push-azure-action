@@ -30,7 +30,7 @@ runs:
   steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-        if: ${{ input.pull_repo }}
+        if: ${{ inputs.pull_repo }}
         with:
           ref: ${{ inputs.branch }}
           fetch-depth: 0
