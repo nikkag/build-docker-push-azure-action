@@ -22,11 +22,15 @@ inputs:
   version_tag:
     description: Docker image version tag ((i.e. $registry.azurecr.io/$repo:$version_tag))
     default: latest
+  pull_repo:
+    description: Boolean flag to indicate whether or not to checkout repo
+    default: true
 runs:
   using: "composite"
   steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+        if: ${{ input.pull_repo }}
         with:
           ref: ${{ inputs.branch }}
           fetch-depth: 0
