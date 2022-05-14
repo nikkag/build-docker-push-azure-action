@@ -19,6 +19,9 @@ inputs:
   version_tag:
     description: Docker image version tag ((i.e. $registry.azurecr.io/$repo:$version_tag))
     default: latest
+  build_args:
+    description: build-time variables to pass into dockerfiles
+    required: false
 runs:
   using: "composite"
   steps:
@@ -39,5 +42,6 @@ runs:
           push: true
           tags: ${{ inputs.registry }}.azurecr.io/${{ inputs.repo }}:${{ inputs.version_tag }}
           file: ${{ inputs.dockerfile }}
+          build-args: ${{ inputs.build_args }}
           cache-from: type=registry,ref=${{ inputs.registry }}.azurecr.io/${{ inputs.repo }}:buildcache
           cache-to: type=registry,ref=${{ inputs.registry }}.azurecr.io/${{ inputs.repo }}:buildcache,mode=max
