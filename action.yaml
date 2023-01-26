@@ -45,3 +45,4 @@ runs:
           build-args: ${{ inputs.build_args }}
           cache-from: type=registry,ref=${{ inputs.registry }}.azurecr.io/${{ inputs.repo }}:buildcache
           cache-to: type=registry,ref=${{ inputs.registry }}.azurecr.io/${{ inputs.repo }}:buildcache,mode=max
+          provenance: false
